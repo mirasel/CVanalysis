@@ -1,3 +1,31 @@
+<?php
+   include("connect.php");
+   session_start();
+   $regierror=array();
+   if (isset($_POST['registersubmit'])) {
+     $cusername = mysqli_real_escape_string($db,$_POST['cusername']);
+     $cname=mysqli_real_escape_string($db,$_POST['fullname']);
+     $cemail=mysqli_real_escape_string($db,$_POST['email']);
+     $cpassword = mysqli_real_escape_string($db,$_POST['cpwd']);
+     $cpassword1=mysqli_real_escape_string($db,$_POST['cfpwd']);
+     if($cpassword!=$cpassword1){
+      array_push($regierror,"The two password doesn't match!!");
+
+    }else{
+      $sql = mysqli_query($db,"select * from Candidatelogin where username='$cusername';");
+      if(mysqli_num_rows($sql)==1){
+        array_push($regierror,"Username is already exist!! Pick another one!!");
+      }else{
+        $sql1 = mysqli_query($db,"insert into Candidatelogin(username,fullname,email,password) values ('$cusername','$cname','$cemail','$cpassword');");
+        if($sql1==true){
+          echo "<script>alert('Register complete!!');
+                window.location.href='login.php';
+          </script>";
+        }
+      }
+    }
+   }
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -62,23 +90,8 @@
               <input type="password" class="form-control" name="cfpwd" placeholder="Enter Password" required>
             </div>
           </div><br>
-          <div class="">
-            <?php
-               include("connect.php");
-               session_start();
-               $regierror=array();
-               if (isset($_POST['registersubmit'])) {
-                 $cusername = mysqli_real_escape_string($db,$_POST['cusername']);
-                 $cname=mysqli_real_escape_string($db,$_POST['fullname']);
-                 $cemail=mysqli_real_escape_string($db,$_POST['email']);
-                 $cpassword = mysqli_real_escape_string($db,$_POST['cpwd']);
-                 $cpassword1=mysqli_real_escape_string($db,$_POST['cfpwd']);
-                 if($cpassword!=$cpassword1){
-                  array_push($regierror,"The two password doesn't match!!");
-                  echo "<p>".$regierror[0]."</p>";
-                 }
-               }
-            ?>
+          <div style="margin:15px 0px 0px 15px; background-color:red; display:inline-block;border-radius:4px;">
+              <?php include('regierror.php') ?>
           </div><br>
           <button type="submit" class="btn btn-success" style="margin:10px 0px 0px 150px;" name="registersubmit">Submit</button>
         </form>
