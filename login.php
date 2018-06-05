@@ -24,7 +24,7 @@
      $sql1 = "select * from Candidatelogin where username='$canusername' and password='$canpassword';";
      $result1=mysqli_query($db,$sql1);
      if (mysqli_num_rows($result1)==1) {
-       header('location: candidate/home.php');
+       header('location: candidate/joblist.php');
      }
      else{
        array_push($errors1,"Username or Password is incorrect!!");

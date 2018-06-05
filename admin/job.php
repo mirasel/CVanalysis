@@ -69,7 +69,7 @@
         <a class="navbar-brand" href="#">WEBer</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="job.php">Job Details</a></li>
+        <li class="active"><a href="job.php">Job Details</a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">View Details<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="navbar-nav"><a href="viewjob.php">View Job Details</a></li>
@@ -82,7 +82,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="../login.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </nav>
