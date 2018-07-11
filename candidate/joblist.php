@@ -64,8 +64,8 @@
         <div class="col-sm-5">
           <select class="form-control" name="selectdesignation">
                   <?php
-                  session_start();
-                   $_SESSION['selectdesignation'] = $designation;
+                  // session_start();
+                   //$_SESSION['selectdesignation'] = $designation;
                   $sql = mysqli_query($db, "SELECT designation FROM Jobdetails");
                   while ($row = $sql->fetch_assoc()){
                     echo "<option value='".$row['designation']."'>". $row['designation'] ."</option>";
@@ -79,7 +79,7 @@
     </form>
     <div class="view">
       <?php
-      
+
                 if (isset($_POST['v'])) {
                   $jobdesignation=mysqli_real_escape_string($db,$_POST['selectdesignation']);
                   $sql1=mysqli_query($db,"select * from Jobdetails where designation='$jobdesignation';");
@@ -95,13 +95,18 @@
                     echo "<pre>Experience   :  More than 5 year Experience</pre>";
                     }
                     echo "<pre>Qualification :  ".$row['qualification']."</pre>";
-                    echo "<pre>Key Skill       :  ".$row['keyskill']."</pre>";
-                    echo "<a style=\"margin:5px 0px 0px 250px;\" type=\"submit\" class=\"btn btn-danger\" href=\"cvsubmit.php\" name=\"apply\">Apply</a>";
+                    echo "<a style=\"margin:5px 0px 0px 250px;\" type=\"submit\" class=\"btn btn-danger\" href=\"cvsubmit.php?id=".$row['id']."\" name=\"apply\">Apply</a>";
                     }
                   }
               ?>
     </div>
   </div>
+  <script type="text/javascript">
+    var getdegi = document.getElementByID('selectdesignation').value;
+    function senddegi(){
+      localStorage.setItem("degi",getdegi);
+    }
+  </script>
 </body>
 
 </html>
