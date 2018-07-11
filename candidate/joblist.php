@@ -80,7 +80,12 @@
     <div class="view">
       <?php
 
+
                 if (isset($_POST['v'])) {
+                  $name = $_GET['canname'];
+                  $s = mysqli_query($db,"select * from Candidatelogin where username='$name';");
+                  $r = mysqli_fetch_assoc($s);
+                  $n = $r['id'];
                   $jobdesignation=mysqli_real_escape_string($db,$_POST['selectdesignation']);
                   $sql1=mysqli_query($db,"select * from Jobdetails where designation='$jobdesignation';");
                   if(mysqli_num_rows($sql1)==1){
@@ -94,8 +99,8 @@
                     }else{
                     echo "<pre>Experience   :  More than 5 year Experience</pre>";
                     }
-                    echo "<pre>Qualification :  ".$row['qualification']."</pre>";
-                    echo "<a style=\"margin:5px 0px 0px 250px;\" type=\"submit\" class=\"btn btn-danger\" href=\"cvsubmit.php?id=".$row['id']."\" name=\"apply\">Apply</a>";
+                    echo "<pre>Mininmun Qualification :  ".$row['qualification']."</pre>";
+                    echo "<a style=\"margin:5px 0px 0px 250px;\" type=\"submit\" class=\"btn btn-danger\" href=\"cvsubmit.php?id=".$row['id']."&canid=".$n."\" name=\"apply\">Apply</a>";
                     }
                   }
               ?>
