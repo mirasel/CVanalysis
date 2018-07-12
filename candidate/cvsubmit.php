@@ -2,7 +2,7 @@
 <?php
   session_start();
   if (isset($_POST['cvsubmit'])) {
-    $canid = $_GET['canid'];
+    $canid = $_SESSION['uid'];
     $jobid = $_GET['id'];
     $fullname = mysqli_real_escape_string($db,$_POST['fullname']);
     $email= mysqli_real_escape_string($db,$_POST['email']);

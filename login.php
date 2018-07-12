@@ -10,6 +10,7 @@
      $sql = "select * from Adminlogin where username='$adusername' and password='$adpassword';";
      $result=mysqli_query($db,$sql);
      if (mysqli_num_rows($result)==1) {
+       $_SESSION['admin']=$adusername;
        header('location: admin/job.php');
      }
      else{
@@ -24,7 +25,10 @@
      $sql1 = "select * from Candidatelogin where username='$canusername' and password='$canpassword';";
      $result1=mysqli_query($db,$sql1);
      if (mysqli_num_rows($result1)==1) {
-       header("location: candidate/joblist.php?canname=$canusername");
+       $row=mysqli_fetch_assoc($result1);
+       $_SESSION['uid']=$row['id'];
+       $_SESSION['uname']=$row['username'];
+       header("location: candidate/joblist.php");
      }
      else{
        array_push($errors1,"Username or Password is incorrect!!");
