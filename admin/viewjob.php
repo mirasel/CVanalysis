@@ -88,7 +88,9 @@ session_start();
             $jobdesignation=mysqli_real_escape_string($db,$_POST['selectdesignation']);
             $sql1=mysqli_query($db,"select * from Jobdetails where designation='$jobdesignation';");
             if(mysqli_num_rows($sql1)==1){
+              $row = mysqli_fetch_assoc($sql1);
               $_SESSION['jid']=$row['id'];
+              $_SESSION['jname']=$row['designation'];
               echo "<pre>Job Id           :  ".$row['id']."</pre>";
               echo "<pre>Designation  :  ".$row['designation']."</pre>";
               echo "<pre>Salary           :  ".$row['salary']."</pre>";
@@ -99,7 +101,10 @@ session_start();
               }else{
               echo "<pre>Experience   :  More than 5 year Experience</pre>";
               }
-              echo "<pre>Qualification :  ".$row['qualification']."</pre>";
+              if($row['qualification']==1)echo "<pre>Qualification :  BSc</pre>";
+              elseif ($row['qualification']==2) {
+                echo "<pre>Qualification :  MSc</pre>";
+              }
               echo "<pre>Key Skill       :  ".$row['keyskill']."</pre>";
               echo "<button style=\"margin-left:185px;\" type=\"submit\" class=\"btn btn-warning\" name=\"edit\">Edit</button>";
               echo "<a style=\"margin-left:15px;\" type=\"submit\" class=\"btn btn-success\" href=\"shortedcv.php\" name=\"scan\">Scan CV</a>";

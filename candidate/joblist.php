@@ -86,7 +86,7 @@
                   $sql1=mysqli_query($db,"select * from Jobdetails where designation='$jobdesignation';");
                   if(mysqli_num_rows($sql1)==1){
                     $row=mysqli_fetch_assoc($sql1);
-                    echo "<pre>Designation  :  ".$row['designation']."</pre>";
+                    echo "<pre>Designation  :  {$row['designation']}</pre>";
                     echo "<pre>Salary           :  ".$row['salary']."</pre>";
                     if($row['experience']>0&&$row['experience']<6){
                     echo "<pre>Experience   :  ".$row['experience']." year</pre>";
@@ -95,7 +95,11 @@
                     }else{
                     echo "<pre>Experience   :  More than 5 year Experience</pre>";
                     }
-                    echo "<pre>Mininmun Qualification :  ".$row['qualification']."</pre>";
+                    if($row['qualification']==1)
+                    echo "<pre>Mininmun Qualification :  BSc</pre>";
+                    elseif ($row['qualification']==2) {
+                      echo "<pre>Mininmun Qualification :  MSc</pre>";
+                    }
                     echo "<a style=\"margin:5px 0px 0px 250px;\" type=\"submit\" class=\"btn btn-danger\" href=\"cvsubmit.php?id=".$row['id']."\" name=\"apply\">Apply</a>";
                     }
                   }

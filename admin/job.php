@@ -126,7 +126,10 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="qualification">Qualification:</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="qualification" placeholder="Enter Qualification" required>
+          <select class="form-control" name="qualification">
+          <option value="2">MSc</option>
+          <option value="1">BSc</option>
+        </select>
         </div>
       </div>
       <div class="form-group">
