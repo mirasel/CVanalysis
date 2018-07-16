@@ -61,10 +61,10 @@ session_start();
           echo "<pre>Address : {$r['address']}</pre>";
           if($r['edu_title']==1)
           echo "<pre>Education : BSc in {$r['subject']}
-                CGPA : {$r['cgpa']}</pre>";
+      CGPA : {$r['cgpa']}</pre>";
           else {
             echo "<pre>Education : MSc in {$r['subject']}
-                  CGPA : {$r['cgpa']}</pre>";
+      CGPA : {$r['cgpa']}</pre>";
           }
           if($r['experience']>0)
           echo "<pre>Experience : {$r['experience']} year</pre>";
